@@ -90,10 +90,6 @@ wire [48:0] pos_w;
 
 integer i,k; 
 
-reg [6:0] index_r,index_w;
-
-wire [6:0] index;
-
 parameter S_idle=3'd0;
 parameter S_load=3'd1;
 parameter S_done=3'd2;
@@ -151,12 +147,6 @@ assign pos_w[48]=(in_r>list_r[48]);
 
 assign counter_w=(state_r==S_load)?counter_r+7'b1:7'b0;
 assign data_out=list_r[24];
-
-assign index=pos_w[00]+pos_w[01]+pos_w[02]+pos_w[03]+pos_w[04]+pos_w[05]+pos_w[06]+pos_w[07]+pos_w[08]+pos_w[09]
-			+pos_w[10]+pos_w[11]+pos_w[12]+pos_w[13]+pos_w[14]+pos_w[15]+pos_w[16]+pos_w[17]+pos_w[18]+pos_w[19]
-			+pos_w[20]+pos_w[21]+pos_w[22]+pos_w[23]+pos_w[24]+pos_w[25]+pos_w[26]+pos_w[27]+pos_w[28]+pos_w[29]
-			+pos_w[30]+pos_w[31]+pos_w[32]+pos_w[33]+pos_w[34]+pos_w[35]+pos_w[36]+pos_w[37]+pos_w[38]+pos_w[39]
-			+pos_w[40]+pos_w[41]+pos_w[42]+pos_w[43]+pos_w[44]+pos_w[45]+pos_w[46]+pos_w[47]+pos_w[48];
 			
 always@(*)
 begin
@@ -215,55 +205,55 @@ begin
 		end
 		S_load:
 		begin
-			list_w[0]=((state_r==S_load)&&(index>6'd0))?list_r[0]:in_r;
-			list_w[1]=(index>6'd1)?list_r[1]:(index==6'd1)?in_r:list_r[0];
-			list_w[2]=(index>6'd2)?list_r[2]:(index==6'd2)?in_r:list_r[1];
-			list_w[3]=(index>6'd3)?list_r[3]:(index==6'd3)?in_r:list_r[2];
-			list_w[4]=(index>6'd4)?list_r[4]:(index==6'd4)?in_r:list_r[3];
-			list_w[5]=(index>6'd5)?list_r[5]:(index==6'd5)?in_r:list_r[4];
-			list_w[6]=(index>6'd6)?list_r[6]:(index==6'd6)?in_r:list_r[5];
-			list_w[7]=(index>6'd7)?list_r[7]:(index==6'd7)?in_r:list_r[6];
-			list_w[8]=(index>6'd8)?list_r[8]:(index==6'd8)?in_r:list_r[7];
-			list_w[9]=(index>6'd9)?list_r[9]:(index==6'd9)?in_r:list_r[8];
-			list_w[10]=(index>6'd10)?list_r[10]:(index==6'd10)?in_r:list_r[9];
-			list_w[11]=(index>6'd11)?list_r[11]:(index==6'd11)?in_r:list_r[10];
-			list_w[12]=(index>6'd12)?list_r[12]:(index==6'd12)?in_r:list_r[11];
-			list_w[13]=(index>6'd13)?list_r[13]:(index==6'd13)?in_r:list_r[12];
-			list_w[14]=(index>6'd14)?list_r[14]:(index==6'd14)?in_r:list_r[13];
-			list_w[15]=(index>6'd15)?list_r[15]:(index==6'd15)?in_r:list_r[14];
-			list_w[16]=(index>6'd16)?list_r[16]:(index==6'd16)?in_r:list_r[15];
-			list_w[17]=(index>6'd17)?list_r[17]:(index==6'd17)?in_r:list_r[16];
-			list_w[18]=(index>6'd18)?list_r[18]:(index==6'd18)?in_r:list_r[17];
-			list_w[19]=(index>6'd19)?list_r[19]:(index==6'd19)?in_r:list_r[18];
-			list_w[20]=(index>6'd20)?list_r[20]:(index==6'd20)?in_r:list_r[19];
-			list_w[21]=(index>6'd21)?list_r[21]:(index==6'd21)?in_r:list_r[20];
-			list_w[22]=(index>6'd22)?list_r[22]:(index==6'd22)?in_r:list_r[21];
-			list_w[23]=(index>6'd23)?list_r[23]:(index==6'd23)?in_r:list_r[22];
-			list_w[24]=(index>6'd24)?list_r[24]:(index==6'd24)?in_r:list_r[23];
-			list_w[25]=(index>6'd25)?list_r[25]:(index==6'd25)?in_r:list_r[24];
-			list_w[26]=(index>6'd26)?list_r[26]:(index==6'd26)?in_r:list_r[25];
-			list_w[27]=(index>6'd27)?list_r[27]:(index==6'd27)?in_r:list_r[26];
-			list_w[28]=(index>6'd28)?list_r[28]:(index==6'd28)?in_r:list_r[27];
-			list_w[29]=(index>6'd29)?list_r[29]:(index==6'd29)?in_r:list_r[28];
-			list_w[30]=(index>6'd30)?list_r[30]:(index==6'd30)?in_r:list_r[29];
-			list_w[31]=(index>6'd31)?list_r[31]:(index==6'd31)?in_r:list_r[30];	
-			list_w[32]=(index>6'd32)?list_r[32]:(index==6'd32)?in_r:list_r[31];
-			list_w[33]=(index>6'd33)?list_r[33]:(index==6'd33)?in_r:list_r[32];	
-			list_w[34]=(index>6'd34)?list_r[34]:(index==6'd34)?in_r:list_r[33];
-			list_w[35]=(index>6'd35)?list_r[35]:(index==6'd35)?in_r:list_r[34];	
-			list_w[36]=(index>6'd36)?list_r[36]:(index==6'd36)?in_r:list_r[35];
-			list_w[37]=(index>6'd37)?list_r[37]:(index==6'd37)?in_r:list_r[36];	
-			list_w[38]=(index>6'd38)?list_r[38]:(index==6'd38)?in_r:list_r[37];
-			list_w[39]=(index>6'd39)?list_r[39]:(index==6'd39)?in_r:list_r[38];	
-			list_w[40]=(index>6'd40)?list_r[40]:(index==6'd40)?in_r:list_r[39];
-			list_w[41]=(index>6'd41)?list_r[41]:(index==6'd41)?in_r:list_r[40];	
-			list_w[42]=(index>6'd42)?list_r[42]:(index==6'd42)?in_r:list_r[41];
-			list_w[43]=(index>6'd43)?list_r[43]:(index==6'd43)?in_r:list_r[42];	
-			list_w[44]=(index>6'd44)?list_r[44]:(index==6'd44)?in_r:list_r[43];
-			list_w[45]=(index>6'd45)?list_r[45]:(index==6'd45)?in_r:list_r[44];	
-			list_w[46]=(index>6'd46)?list_r[46]:(index==6'd46)?in_r:list_r[45];
-			list_w[47]=(index>6'd47)?list_r[47]:(index==6'd47)?in_r:list_r[46];				
-			list_w[48]=(index>6'd48)?list_r[48]:(index==6'd48)?in_r:list_r[47];					
+			list_w[0]=((state_r==S_load)&&(pos_w[0]==1'b1))?list_r[0]:in_r;
+			list_w[1]=(pos_w[1]==1'b1)?list_r[1]:((pos_w[0]==1'b1)&&(pos_w[1]==1'b0))?in_r:list_r[0];
+			list_w[2]=(pos_w[2]==1'b1)?list_r[2]:((pos_w[1]==1'b1)&&(pos_w[2]==1'b0))?in_r:list_r[1];
+			list_w[3]=(pos_w[3]==1'b1)?list_r[3]:((pos_w[2]==1'b1)&&(pos_w[3]==1'b0))?in_r:list_r[2];
+			list_w[4]=(pos_w[4]==1'b1)?list_r[4]:((pos_w[3]==1'b1)&&(pos_w[4]==1'b0))?in_r:list_r[3];
+			list_w[5]=(pos_w[5]==1'b1)?list_r[5]:((pos_w[4]==1'b1)&&(pos_w[5]==1'b0))?in_r:list_r[4];
+			list_w[6]=(pos_w[6]==1'b1)?list_r[6]:((pos_w[5]==1'b1)&&(pos_w[6]==1'b0))?in_r:list_r[5];
+			list_w[7]=(pos_w[7]==1'b1)?list_r[7]:((pos_w[6]==1'b1)&&(pos_w[7]==1'b0))?in_r:list_r[6];
+			list_w[8]=(pos_w[8]==1'b1)?list_r[8]:((pos_w[7]==1'b1)&&(pos_w[8]==1'b0))?in_r:list_r[7];
+			list_w[9]=(pos_w[9]==1'b1)?list_r[9]:((pos_w[8]==1'b1)&&(pos_w[9]==1'b0))?in_r:list_r[8];
+			list_w[10]=(pos_w[10]==1'b1)?list_r[10]:((pos_w[9]==1'b1)&&(pos_w[10]==1'b0))?in_r:list_r[9];
+			list_w[11]=(pos_w[11]==1'b1)?list_r[11]:((pos_w[10]==1'b1)&&(pos_w[11]==1'b0))?in_r:list_r[10];
+			list_w[12]=(pos_w[12]==1'b1)?list_r[12]:((pos_w[11]==1'b1)&&(pos_w[12]==1'b0))?in_r:list_r[11];
+			list_w[13]=(pos_w[13]==1'b1)?list_r[13]:((pos_w[12]==1'b1)&&(pos_w[13]==1'b0))?in_r:list_r[12];
+			list_w[14]=(pos_w[14]==1'b1)?list_r[14]:((pos_w[13]==1'b1)&&(pos_w[14]==1'b0))?in_r:list_r[13];
+			list_w[15]=(pos_w[15]==1'b1)?list_r[15]:((pos_w[14]==1'b1)&&(pos_w[15]==1'b0))?in_r:list_r[14];
+			list_w[16]=(pos_w[16]==1'b1)?list_r[16]:((pos_w[15]==1'b1)&&(pos_w[16]==1'b0))?in_r:list_r[15];
+			list_w[17]=(pos_w[17]==1'b1)?list_r[17]:((pos_w[16]==1'b1)&&(pos_w[17]==1'b0))?in_r:list_r[16];
+			list_w[18]=(pos_w[18]==1'b1)?list_r[18]:((pos_w[17]==1'b1)&&(pos_w[18]==1'b0))?in_r:list_r[17];
+			list_w[19]=(pos_w[19]==1'b1)?list_r[19]:((pos_w[18]==1'b1)&&(pos_w[19]==1'b0))?in_r:list_r[18];
+			list_w[20]=(pos_w[20]==1'b1)?list_r[20]:((pos_w[19]==1'b1)&&(pos_w[20]==1'b0))?in_r:list_r[19];
+			list_w[21]=(pos_w[21]==1'b1)?list_r[21]:((pos_w[20]==1'b1)&&(pos_w[21]==1'b0))?in_r:list_r[20];
+			list_w[22]=(pos_w[22]==1'b1)?list_r[22]:((pos_w[21]==1'b1)&&(pos_w[22]==1'b0))?in_r:list_r[21];
+			list_w[23]=(pos_w[23]==1'b1)?list_r[23]:((pos_w[22]==1'b1)&&(pos_w[23]==1'b0))?in_r:list_r[22];
+			list_w[24]=(pos_w[24]==1'b1)?list_r[24]:((pos_w[23]==1'b1)&&(pos_w[24]==1'b0))?in_r:list_r[23];
+			list_w[25]=(pos_w[25]==1'b1)?list_r[25]:((pos_w[24]==1'b1)&&(pos_w[25]==1'b0))?in_r:list_r[24];
+			list_w[26]=(pos_w[26]==1'b1)?list_r[26]:((pos_w[25]==1'b1)&&(pos_w[26]==1'b0))?in_r:list_r[25];
+			list_w[27]=(pos_w[27]==1'b1)?list_r[27]:((pos_w[26]==1'b1)&&(pos_w[27]==1'b0))?in_r:list_r[26];
+			list_w[28]=(pos_w[28]==1'b1)?list_r[28]:((pos_w[27]==1'b1)&&(pos_w[28]==1'b0))?in_r:list_r[27];
+			list_w[29]=(pos_w[29]==1'b1)?list_r[29]:((pos_w[28]==1'b1)&&(pos_w[29]==1'b0))?in_r:list_r[28];
+			list_w[30]=(pos_w[30]==1'b1)?list_r[30]:((pos_w[29]==1'b1)&&(pos_w[30]==1'b0))?in_r:list_r[29];
+			list_w[31]=(pos_w[31]==1'b1)?list_r[31]:((pos_w[30]==1'b1)&&(pos_w[31]==1'b0))?in_r:list_r[30];	
+			list_w[32]=(pos_w[32]==1'b1)?list_r[32]:((pos_w[31]==1'b1)&&(pos_w[32]==1'b0))?in_r:list_r[31];
+			list_w[33]=(pos_w[33]==1'b1)?list_r[33]:((pos_w[32]==1'b1)&&(pos_w[33]==1'b0))?in_r:list_r[32];	
+			list_w[34]=(pos_w[34]==1'b1)?list_r[34]:((pos_w[33]==1'b1)&&(pos_w[34]==1'b0))?in_r:list_r[33];
+			list_w[35]=(pos_w[35]==1'b1)?list_r[35]:((pos_w[34]==1'b1)&&(pos_w[35]==1'b0))?in_r:list_r[34];	
+			list_w[36]=(pos_w[36]==1'b1)?list_r[36]:((pos_w[35]==1'b1)&&(pos_w[36]==1'b0))?in_r:list_r[35];
+			list_w[37]=(pos_w[37]==1'b1)?list_r[37]:((pos_w[36]==1'b1)&&(pos_w[37]==1'b0))?in_r:list_r[36];	
+			list_w[38]=(pos_w[38]==1'b1)?list_r[38]:((pos_w[37]==1'b1)&&(pos_w[38]==1'b0))?in_r:list_r[37];
+			list_w[39]=(pos_w[39]==1'b1)?list_r[39]:((pos_w[38]==1'b1)&&(pos_w[39]==1'b0))?in_r:list_r[38];	
+			list_w[40]=(pos_w[40]==1'b1)?list_r[40]:((pos_w[39]==1'b1)&&(pos_w[40]==1'b0))?in_r:list_r[39];
+			list_w[41]=(pos_w[41]==1'b1)?list_r[41]:((pos_w[40]==1'b1)&&(pos_w[41]==1'b0))?in_r:list_r[40];	
+			list_w[42]=(pos_w[42]==1'b1)?list_r[42]:((pos_w[41]==1'b1)&&(pos_w[42]==1'b0))?in_r:list_r[41];
+			list_w[43]=(pos_w[43]==1'b1)?list_r[43]:((pos_w[42]==1'b1)&&(pos_w[43]==1'b0))?in_r:list_r[42];	
+			list_w[44]=(pos_w[44]==1'b1)?list_r[44]:((pos_w[43]==1'b1)&&(pos_w[44]==1'b0))?in_r:list_r[43];
+			list_w[45]=(pos_w[45]==1'b1)?list_r[45]:((pos_w[44]==1'b1)&&(pos_w[45]==1'b0))?in_r:list_r[44];	
+			list_w[46]=(pos_w[46]==1'b1)?list_r[46]:((pos_w[45]==1'b1)&&(pos_w[46]==1'b0))?in_r:list_r[45];
+			list_w[47]=(pos_w[47]==1'b1)?list_r[47]:((pos_w[46]==1'b1)&&(pos_w[47]==1'b0))?in_r:list_r[46];				
+			list_w[48]=(pos_w[48]==1'b1)?list_r[48]:((pos_w[47]==1'b1)&&(pos_w[48]==1'b0))?in_r:list_r[47];					
 		end
 		S_done:
 		begin
@@ -319,55 +309,55 @@ begin
 		end
 		S_dele:
 		begin
-			list_w[0]=(index>6'd0)?list_r[0]:list_r[1];
-			list_w[1]=(index>6'd1)?list_r[1]:list_r[2];
-			list_w[2]=(index>6'd2)?list_r[2]:list_r[3];
-			list_w[3]=(index>6'd3)?list_r[3]:list_r[4];
-			list_w[4]=(index>6'd4)?list_r[4]:list_r[5];
-			list_w[5]=(index>6'd5)?list_r[5]:list_r[6];
-			list_w[6]=(index>6'd6)?list_r[6]:list_r[7];
-			list_w[7]=(index>6'd7)?list_r[7]:list_r[8];
-			list_w[8]=(index>6'd8)?list_r[8]:list_r[9];
-			list_w[9]=(index>6'd9)?list_r[9]:list_r[10];
-			list_w[10]=(index>6'd10)?list_r[10]:list_r[11];
-			list_w[11]=(index>6'd11)?list_r[11]:list_r[12];
-			list_w[12]=(index>6'd12)?list_r[12]:list_r[13];
-			list_w[13]=(index>6'd13)?list_r[13]:list_r[14];
-			list_w[14]=(index>6'd14)?list_r[14]:list_r[15];
-			list_w[15]=(index>6'd15)?list_r[15]:list_r[16];
-			list_w[16]=(index>6'd16)?list_r[16]:list_r[17];
-			list_w[17]=(index>6'd17)?list_r[17]:list_r[18];
-			list_w[18]=(index>6'd18)?list_r[18]:list_r[19];
-			list_w[19]=(index>6'd19)?list_r[19]:list_r[20];
-			list_w[20]=(index>6'd20)?list_r[20]:list_r[21];
-			list_w[21]=(index>6'd21)?list_r[21]:list_r[22];
-			list_w[22]=(index>6'd22)?list_r[22]:list_r[23];
-			list_w[23]=(index>6'd23)?list_r[23]:list_r[24];
-			list_w[24]=(index>6'd24)?list_r[24]:list_r[25];
-			list_w[25]=(index>6'd25)?list_r[25]:list_r[26];
-			list_w[26]=(index>6'd26)?list_r[26]:list_r[27];
-			list_w[27]=(index>6'd27)?list_r[27]:list_r[28];
-			list_w[28]=(index>6'd28)?list_r[28]:list_r[29];
-			list_w[29]=(index>6'd29)?list_r[29]:list_r[30];
-			list_w[30]=(index>6'd30)?list_r[30]:list_r[31];
-			list_w[31]=(index>6'd31)?list_r[31]:list_r[32];
-			list_w[32]=(index>6'd32)?list_r[32]:list_r[33];
-			list_w[33]=(index>6'd33)?list_r[33]:list_r[34];
-			list_w[34]=(index>6'd34)?list_r[34]:list_r[35];
-			list_w[35]=(index>6'd35)?list_r[35]:list_r[36];
-			list_w[36]=(index>6'd36)?list_r[36]:list_r[37];
-			list_w[37]=(index>6'd37)?list_r[37]:list_r[38];
-			list_w[38]=(index>6'd38)?list_r[38]:list_r[39];
-			list_w[39]=(index>6'd39)?list_r[39]:list_r[40];
-			list_w[40]=(index>6'd40)?list_r[40]:list_r[41];
-			list_w[41]=(index>6'd41)?list_r[41]:list_r[42];
-			list_w[42]=(index>6'd42)?list_r[42]:list_r[43];
-			list_w[43]=(index>6'd43)?list_r[43]:list_r[44];
-			list_w[44]=(index>6'd44)?list_r[44]:list_r[45];
-			list_w[45]=(index>6'd45)?list_r[45]:list_r[46];
-			list_w[46]=(index>6'd46)?list_r[46]:list_r[47];
-			list_w[47]=(index>6'd47)?list_r[47]:list_r[48];
-			list_w[48]=(index>6'd48)?list_r[48]:8'd255;			
+			list_w[0]=(pos_w[0]==1'b1)?list_r[0]:list_r[1];
+			list_w[1]=(pos_w[1]==1'b1)?list_r[1]:list_r[2];
+			list_w[2]=(pos_w[2]==1'b1)?list_r[2]:list_r[3];
+			list_w[3]=(pos_w[3]==1'b1)?list_r[3]:list_r[4];
+			list_w[4]=(pos_w[4]==1'b1)?list_r[4]:list_r[5];
+			list_w[5]=(pos_w[5]==1'b1)?list_r[5]:list_r[6];
+			list_w[6]=(pos_w[6]==1'b1)?list_r[6]:list_r[7];
+			list_w[7]=(pos_w[7]==1'b1)?list_r[7]:list_r[8];
+			list_w[8]=(pos_w[8]==1'b1)?list_r[8]:list_r[9];
+			list_w[9]=(pos_w[9]==1'b1)?list_r[9]:list_r[10];
+			list_w[10]=(pos_w[10]==1'b1)?list_r[10]:list_r[11];
+			list_w[11]=(pos_w[11]==1'b1)?list_r[11]:list_r[12];
+			list_w[12]=(pos_w[12]==1'b1)?list_r[12]:list_r[13];
+			list_w[13]=(pos_w[13]==1'b1)?list_r[13]:list_r[14];
+			list_w[14]=(pos_w[14]==1'b1)?list_r[14]:list_r[15];
+			list_w[15]=(pos_w[15]==1'b1)?list_r[15]:list_r[16];
+			list_w[16]=(pos_w[16]==1'b1)?list_r[16]:list_r[17];
+			list_w[17]=(pos_w[17]==1'b1)?list_r[17]:list_r[18];
+			list_w[18]=(pos_w[18]==1'b1)?list_r[18]:list_r[19];
+			list_w[19]=(pos_w[19]==1'b1)?list_r[19]:list_r[20];
+			list_w[20]=(pos_w[20]==1'b1)?list_r[20]:list_r[21];
+			list_w[21]=(pos_w[21]==1'b1)?list_r[21]:list_r[22];
+			list_w[22]=(pos_w[22]==1'b1)?list_r[22]:list_r[23];
+			list_w[23]=(pos_w[23]==1'b1)?list_r[23]:list_r[24];
+			list_w[24]=(pos_w[24]==1'b1)?list_r[24]:list_r[25];
+			list_w[25]=(pos_w[25]==1'b1)?list_r[25]:list_r[26];
+			list_w[26]=(pos_w[26]==1'b1)?list_r[26]:list_r[27];
+			list_w[27]=(pos_w[27]==1'b1)?list_r[27]:list_r[28];
+			list_w[28]=(pos_w[28]==1'b1)?list_r[28]:list_r[29];
+			list_w[29]=(pos_w[29]==1'b1)?list_r[29]:list_r[30];
+			list_w[30]=(pos_w[30]==1'b1)?list_r[30]:list_r[31];
+			list_w[31]=(pos_w[31]==1'b1)?list_r[31]:list_r[32];
+			list_w[32]=(pos_w[32]==1'b1)?list_r[32]:list_r[33];
+			list_w[33]=(pos_w[33]==1'b1)?list_r[33]:list_r[34];
+			list_w[34]=(pos_w[34]==1'b1)?list_r[34]:list_r[35];
+			list_w[35]=(pos_w[35]==1'b1)?list_r[35]:list_r[36];
+			list_w[36]=(pos_w[36]==1'b1)?list_r[36]:list_r[37];
+			list_w[37]=(pos_w[37]==1'b1)?list_r[37]:list_r[38];
+			list_w[38]=(pos_w[38]==1'b1)?list_r[38]:list_r[39];
+			list_w[39]=(pos_w[39]==1'b1)?list_r[39]:list_r[40];
+			list_w[40]=(pos_w[40]==1'b1)?list_r[40]:list_r[41];
+			list_w[41]=(pos_w[41]==1'b1)?list_r[41]:list_r[42];
+			list_w[42]=(pos_w[42]==1'b1)?list_r[42]:list_r[43];
+			list_w[43]=(pos_w[43]==1'b1)?list_r[43]:list_r[44];
+			list_w[44]=(pos_w[44]==1'b1)?list_r[44]:list_r[45];
+			list_w[45]=(pos_w[45]==1'b1)?list_r[45]:list_r[46];
+			list_w[46]=(pos_w[46]==1'b1)?list_r[46]:list_r[47];
+			list_w[47]=(pos_w[47]==1'b1)?list_r[47]:list_r[48];
+			list_w[48]=(pos_w[48]==1'b1)?list_r[48]:8'd255;			
 		end	
 		default:
 		begin
@@ -439,7 +429,6 @@ always@(posedge clk or posedge rst or posedge newline)
 begin
 	if(rst)
 	begin
-		index_r<=49'd0;	
 		in_r<=7'b0;
 		counter_r<=7'b0;
         state_r<=2'b0;	
@@ -495,7 +484,6 @@ begin
 	end
 	else if(newline)
 	begin
-		index_r<=index_w;
 		in_r<=7'b0;
 		counter_r<=7'b0;
         state_r<=2'b0;	
@@ -550,8 +538,7 @@ begin
 		list_r[48]<=8'd255;		
 	end	
 	else
-	begin
-		index_r<=index_w;	
+	begin	
 		in_r<=data_in;
 		counter_r<=counter_w;
         state_r<=state_w;	
@@ -685,8 +672,6 @@ integer k;
 
 reg [7:0] data_r;
 reg [7:0] data_w;
-
-reg [2:0] win_index;
 
 reg [7:0] win_r [6:0];
 reg [7:0] win_w [6:0];
